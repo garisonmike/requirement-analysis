@@ -1,0 +1,60 @@
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+
+actor Guest as guest
+actor "Registered User" as user
+actor "Property Owner" as owner
+actor Administrator as admin
+actor "Payment Gateway" as payment
+
+rectangle "Booking Management System" {
+  usecase "Browse Properties" as UC1
+  usecase "Search Properties" as UC2
+  usecase "View Property Details" as UC3
+  usecase "Register Account" as UC4
+  usecase "Login" as UC5
+  usecase "Manage Profile" as UC6
+  usecase "Make Booking" as UC7
+  usecase "Process Payment" as UC8
+  usecase "Cancel Booking" as UC9
+  usecase "View Booking History" as UC10
+  usecase "Leave Review" as UC11
+  usecase "List Property" as UC12
+  usecase "Manage Property Listings" as UC13
+  usecase "View Booking Requests" as UC14
+  usecase "Manage User Accounts" as UC15
+  usecase "Generate Reports" as UC16
+  usecase "Manage System Settings" as UC17
+}
+
+guest --> UC1
+guest --> UC2
+guest --> UC3
+guest --> UC4
+
+user --> UC5
+user --> UC1
+user --> UC2
+user --> UC3
+user --> UC6
+user --> UC7
+user --> UC9
+user --> UC10
+user --> UC11
+
+owner --> UC5
+owner --> UC12
+owner --> UC13
+owner --> UC14
+owner --> UC6
+
+admin --> UC5
+admin --> UC15
+admin --> UC16
+admin --> UC17
+
+UC7 ..> UC8 : <<include>>
+UC8 --> payment
+
+@enduml
